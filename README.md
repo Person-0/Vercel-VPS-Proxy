@@ -7,10 +7,14 @@ APIs and stuff hosted on my VPS is accessed through this expressjs project.
 
 - install deps
 ```
-npm i
+pnpm i
 ```
 
 - run dev to test locally
 ```
-npm run dev
+pnpm run dev
 ```
+
+<br>
+
+# DO NOT FORGET IT IS `pnpm` NOT `npm` else lockfile will become invalid/frozen
