@@ -13,7 +13,6 @@ if (IS_DEV_ENV) {
 }
 
 const app = express();
-app.use(express.text({ type: "*/*" }));
 
 type routePathInfo = {
 	path: string,
@@ -38,7 +37,7 @@ if (ROUTES === false) {
 function addRoute(routes: routesType, parentRoute: string = "") {
 	for (const [route, pathInfo] of Object.entries(routes)) {
 		if (pathInfo.mode && pathInfo.path) {
-			const builtPath = path.join(parentRoute, route).replaceAll("\\","/");
+			const builtPath = path.join(parentRoute, route).replaceAll("\\", "/");
 
 			if (pathInfo.mode === 'MIRROR') {
 				// this gave me a headache but atleast it works
@@ -94,7 +93,11 @@ function addRoute(routes: routesType, parentRoute: string = "") {
 				if (pathInfo.mode === "GET") {
 					app.get(builtPath, cb(pathInfo.mode));
 				} else if (pathInfo.mode === "POST") {
-					app.post(builtPath, cb(pathInfo.mode));
+					const rawText = (req, res, next) => {
+						express.text({ type: "*/*" })(req, res, next);
+					};
+
+					app.post(builtPath, rawText, cb(pathInfo.mode));
 				}
 			}
 
