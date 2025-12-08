@@ -32,7 +32,12 @@ For deploying, stringify the `routes.json` file and paste it's content as a secr
 
 > Treat your `routes.json` file with the same level of security as a `.env` file as it would contain all your VPS IPs.
 
-A `sample.routes.json` file exists by default at the specified path, you can rename it to `routes.json` to start off.
+A `sample.routes.json` file exists by default at the specified path, you can rename it to `routes.json` to start off.<br>
+
+There are 3 modes available: `GET`, `POST` and `MIRROR`.<br><br>
+The `MIRROR` mode is the best and recommended way to use this project.<br><br>
+While `GET` and `POST` do work, they currently do not pass on headers and other stuff which may cause mismatches between what was actually sent and what was recieved by the client / VPS. This is currently work-in-progress and may be fixed in the future.
+
 
 Sample routes file content
 ```json
@@ -70,12 +75,6 @@ The above file specifies the following routes:
 - `/nested/nest1/nest2`
     - this points to https://example.com as a simple GET request and was kept as an example of nested routes
 
-<br>
-
-The `MIRROR` mode is the best and recommended way to use this project.
-<br>
-
-While `GET` and `POST` do work, they currently do not pass on headers and other stuff which may cause mismatches between what was actually sent and what was recieved by the client / VPS. This is currently work-in-progress and may be fixed in the future.
 
 ## Steps to test locally
 
