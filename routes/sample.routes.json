@@ -1,0 +1,22 @@
+{
+    "/": {
+        "mode": "GET",
+        "path": "https://example.com"
+    },
+	"/github": {
+		"mode": "MIRROR",
+		"path": "https://github.com/"
+	},
+    "/postexample": {
+        "mode": "POST",
+        "path": "https://example.com"
+    },
+    "/nested": {
+        "nest1": {
+            "nest2": {
+                "mode": "GET",
+                "path": "https://example.com"
+            }
+        }
+    }
+}
