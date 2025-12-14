@@ -108,13 +108,13 @@ function addRoute(routes: routesType, parentRoute: string = "") {
 	}
 }
 
-console.log("");
-addRoute(ROUTES);
-console.log("");
-
 app.get("/", (req, res) => {
 	res.send("the vps routes app says hello world");
 });
+
+console.log("");
+addRoute(ROUTES);
+console.log("");
 
 if (IS_DEV_ENV) {
 	const PORT = process.env.PORT || 8080;
