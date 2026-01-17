@@ -3,6 +3,10 @@
         "mode": "GET",
         "path": "https://example.com"
     },
+    "/redirect": {
+        "mode": "REDIRECT",
+        "path": "https://example.com"
+    },
 	"/github": {
 		"mode": "MIRROR",
 		"path": "https://github.com/"

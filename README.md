@@ -34,7 +34,7 @@ For deploying, stringify the `routes.json` file and paste it's content as a secr
 
 A `sample.routes.json` file exists by default at the specified path, you can rename it to `routes.json` to start off.<br>
 
-There are 3 modes available: `GET`, `POST` and `MIRROR`.<br><br>
+There are 4 modes available: `GET`, `POST`, `REDIRECT` and `MIRROR`.<br><br>
 The `MIRROR` mode is the best and recommended way to use this project.<br><br>
 While `GET` and `POST` do work, they currently do not pass on headers and other stuff which may cause mismatches between what was actually sent and what was recieved by the client / VPS. This is currently work-in-progress and may be fixed in the future.
 
@@ -44,6 +44,10 @@ Sample routes file content
 {
     "/": {
         "mode": "GET",
+        "path": "https://example.com"
+    },
+    "/redirect": {
+        "mode": "REDIRECT",
         "path": "https://example.com"
     },
 	"/github": {
@@ -67,6 +71,8 @@ Sample routes file content
 The above file specifies the following routes:
 - `/`
     - this points to https://example.com as a simple GET request
+- `/redirect`
+    - this redirects to https://example.com
 - `/github`
     - this mirrors https://github.com/ under the subpath /github i.e relative urls like `./a/b` from `/github` will point to `/github/a/b` and be resolved as `https://github.com/a/b`, without ever revealing the IP address of https://github.com (which in our case would be the IP address of our VPS)
 > Please note that even though the github website is mirrored, CORS still exists which would prevent most of the API request github requires to work. This is just a proof-of-concept.

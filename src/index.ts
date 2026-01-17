@@ -16,7 +16,7 @@ const app = express();
 
 type routePathInfo = {
 	path: string,
-	mode: 'GET' | 'POST' | 'MIRROR'
+	mode: 'GET' | 'POST' | 'MIRROR' | 'REDIRECT'
 };
 type routesType = { [routeName: string]: routePathInfo | routesType };
 
@@ -39,7 +39,13 @@ function addRoute(routes: routesType, parentRoute: string = "") {
 		if (pathInfo.mode && pathInfo.path) {
 			const builtPath = path.join(parentRoute, route).replaceAll("\\", "/");
 
-			if (pathInfo.mode === 'MIRROR') {
+			if (pathInfo.mode === 'REDIRECT') {
+
+				app.get(builtPath, (req, res) => {
+					res.redirect(pathInfo.path as string);
+				})
+
+			} else if (pathInfo.mode === 'MIRROR') {
 				// this gave me a headache but atleast it works
 				//
 				// a single difference of a / caused the subpath of an index.html 
